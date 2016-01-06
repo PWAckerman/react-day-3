@@ -1,20 +1,40 @@
 // create an App component for our application
 // render it to the DOM
 // add 3 links with the following hrefs: '#/', '#/about', '#/contact'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Router, Route, Link, IndexRoute} from 'react-router';
+import Home from './Home.js';
+import About from './About.js';
+import Contact from './Contact.js';
 
-// add `route` to the state, use getInitialState to set the default value to the hash portion of the browser url
-// in componentDidMount, create an event listener that will listen to any changes to the browser url
-// whenever the url changes, update `route` on the state with the updated hash
+const App = React.createClass({
+  render(){
+    return (
+      <div>
+      <div>Hello</div>
+      <Link to="/">HOME</Link>
+      <Link to="/about">ABOUT</Link>
+      <Link to="/contact">CONTACT</Link>
+      {this.props.children}
+      </div>
+    )
+  }
+})
 
+ReactDOM.render(
+  <Router>
+    <Route component={ App } path="/">
+        <IndexRoute component={ Home }/>
+        <Route path="about/:name" component={ About }/>
+        <Route path="contact" component={ Contact }/>
+    </Route>
+  </Router>, document.getElementById('app'))
 // create 3 new components, each in it's own file: Home, About, and Contact
 // have each of them return the following jsx, respectively: `<div>Home</div>`
 // export them so they can be used in other files
 // include each of the new components into this App.js file
 
-// in render() check this.state.route (the browser's current url) to find a matching component
-// `#/` = <Home />, `#/about` = <About />, `#/contact` = <Contact />
-// assign the matching component to a variable called `Child`
-// add <Child /> to the return statement so the matching route gets rendered to the DOM
 
 
 ////////////////////////////////////
